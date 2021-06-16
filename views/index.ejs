@@ -1,7 +1,6 @@
 <!doctype html>
-
 <html lang="fr">
-
+    
 <head>
     <meta charset="utf-8">
 
@@ -17,146 +16,116 @@
 
 <body>
 
-    <div class="test"></div>
-
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-7">
-                
-                    <h1 class="num_users"></h1>
-
-                    <div id="user_list" class="table-responsive">
-                    <table class="table table-hover ">
+                <div id="user_list" class="table-responsive">
+                    <div class="row">
+                        <h1 id="users_count" class="col-9"></h1>
+                        <div class="col-3">
+                            <button name="action_add_user" class="btn btn-success float-right">Ajouter un
+                                utilisateur</button>
+                        </div>
+                    </div>
+                    <table class="table table-hover w-100">
                         <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nom</th>
-                            <th>Prénom</th>
-                            <th>anniverssaire</th>
-                            <th>Sexe</th>
-                            <th><button class="btn btn-success pop_add_user">Ajouter un utilisateur</button></th>
-                            <th>Genres</th>
-                        </tr>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>anniversaire</th>
+                                <th>Sexe</th>
+                                <th></th>
+                            </tr>
                         </thead>
-                        <tbody class="tbody">
-                                                         <!--liste user -->
+                        <tbody>
+                            <!--Placeholder pour les utilisateurs -->
                         </tbody>
                     </table>
-                    </div>
-
-                
-                
+                </div>
             </div>
             <div class="col-md-4 mt-5">
-                <form id="ajax_user" class="rounded shadow p-3 bg-success text-light bg-gradient">
+                <form id="frmUser" class="rounded shadow p-3 text-light bg-gradient">
                     <div class="d-flex">
-                        <h4 class="col-11">Ajout utilisateur</h4>
-                        <button type="button" class="btn-close col-1" onClick="$('#ajax_user').hide();" aria-label="Close"></button>
+                        <h4 class="title col-11">Ajout utilisateur</h4>
+                        <button name="close" class="btn-close col-1" aria-label="Close"></button>
                     </div>
                     <div class="mb-3">
+                        <input type="hidden" name="id" />
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name" name="name" class="form-control" placeholder="">
+                        <input type="text" name="name" class="form-control" placeholder="">
                     </div>
                     <div class="mb-3">
                         <label for="firstname" class="form-label">Firstname</label>
-                        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="">
+                        <input type="text" name="firstname" class="form-control" placeholder="">
                     </div>
                     <div class="mb-3">
                         <label for="gender" class="form-label gender">Gender</label>
-                        <select id="gender" name="gender" class="form-select gender">
+                        <select name="gender" class="form-select gender">
                             <option>Male</option>
                             <option>Female</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="birthdate" class="form-label">Birthdate</label>
-                        <input type="date" name="birthdate" id="birthdate" class="form-control" placeholder="">
+                        <input type="date" name="birthdate" class="form-control" placeholder="">
                     </div>
-                    <button type="submit" class="btn btn-primary add_user">Ajout</button>
-                </form>
-                
-                <form id="ajax_edit" class="rounded shadow p-3 bg-warning bg-gradient">
-                    <div class="d-flex">
-                        <h4 class="col-11">Modifer utilisateur</h4>
-                        <button type="button" class="btn-close col-1" onClick="$('#ajax_edit').hide();" aria-label="Close"></button>
-                    </div>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" id="name-edit" class="form-control" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="firstname" class="form-label">Firstname</label>
-                        <input type="text" id="firstname-edit" class="form-control" placeholder="">
-                    </div>
-                    <div class="mb-3">
-                        <label for="gender" class="form-label gender">Gender</label>
-                        <select id="gender-edit" class="form-select gender">
-                            <option>Male</option>
-                            <option>Female</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="birthdate" class="form-label">Birthdate</label>
-                        <input type="date" id="birthdate-edit" class="form-control" placeholder="">
-                    </div>
-                    <button type="submit" id="btn_edit" class="btn btn-primary edit_user pop_edit_user">Modifier</button>
+                    <button name="submit" class="btn btn-primary add_user">Ajout</button>
                 </form>
 
                 <div id="ajax_genre" class="rounded shadow p-3 bg-secondary bg-gradient">
                     <ul id="list_genres" class="" value="">
-                        
+
                     </ul>
-                    
+
                     <div id="pop_genre">
-                        <form id="ajax_add_genre" style="display:none"class="col-6 rounded shadow p-3 bg-secodary bg-gradient">
+                        <form id="ajax_add_genre" style="display:none"
+                            class="col-6 rounded shadow p-3 bg-secodary bg-gradient">
                             <div class="d-flex">
                                 <h4 class="col-11">Ajoutez un genre</h4>
-                                <button type="button" class="btn-close col-1" onClick="$('#ajax_add_genre').hide();" aria-label="Close"></button>
+                                <button type="button" class="btn-close col-1" onClick="$('#ajax_add_genre').hide();"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" id="name_genre" class="form-control" placeholder="">
                             </div>
                             <input id="form_genre" type="hidden" class="genre_id" value="">
-                            <button type="submit" id="btn_add_genre" class="btn btn-primary action-add_genre pop_edit_genre">Ajoutez</button>
+                            <button type="submit" id="btn_add_genre"
+                                class="btn btn-primary action-add_genre pop_edit_genre">Ajoutez</button>
                         </form>
                     </div>
 
-                        <form id="ajax_add_album" class="col-6 rounded shadow p-3 bg-secodary bg-gradient">
-                            <div class="d-flex">
-                                <h4 class="col-11">Ajoutez un album</h4>
-                                <button type="button" class="btn-close col-1" onClick="$('#ajax_add_album').hide();" aria-label="Close"></button>
-                            </div>
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" id="name_album" class="form-control" placeholder="">
-                            </div>
-                            <input id="album_id" type="hidden" class="genre_album_id" value="">
-                            <input id="album_id" type="hidden" class="genre_id" value="">
-                         
-                            <button type="submit" id="btn_add_genre" class="btn btn-primary action-add_album pop_edit_album">Ajoutez</button>
-                        </form>
-                    
+                    <form id="ajax_add_album" class="col-6 rounded shadow p-3 bg-secodary bg-gradient">
+                        <div class="d-flex">
+                            <h4 class="col-11">Ajoutez un album</h4>
+                            <button type="button" class="btn-close col-1" onClick="$('#ajax_add_album').hide();"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name_album" class="form-control" placeholder="">
+                        </div>
+                        <input id="album_id" type="hidden" class="genre_album_id" value="">
+                        <input id="album_id" type="hidden" class="genre_id" value="">
+
+                        <button type="submit" id="btn_add_genre"
+                            class="btn btn-primary action-add_album pop_edit_album">Ajoutez</button>
+                    </form>
+
                     <button id="btn_edit" class="btn btn-primary pop_add_genre">Ajoutez un genre</button>
                 </div>
-
-
-
-
 
             </div>
         </div>
     </div>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="undefined"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src ="/assets/script.js">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/assets/script.js"></script>
 </body>
 
 </html>

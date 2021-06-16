@@ -1,0 +1,12 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "exomanu",
+            "database": "${workspaceFolder:exomanu}/exomanu.db",
+            "group": "exomanu"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
